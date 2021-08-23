@@ -1,0 +1,65 @@
+{% extends "principal/principal.html" %}
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse
+    }
+
+    th {
+        text-align: center;
+    }
+
+    td,
+    h2 {
+        text-align: center;
+    }
+</style>
+<h2>LISTA DE TODOS LOS ESTUDIANTES</h1>
+    <table class="striped">
+        <thead>
+            <tr>
+
+                <th>Nombres</th>
+
+                <th>Apellidos</th>
+
+                <th>Carrera</th>
+
+                <th>Edad</th>
+
+                <th>Teléfono</th>
+
+                <th>Opciones</th>
+
+
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for estu in estudiante %}
+            <tr>
+
+                <td>{{estu.nombres}}</td>
+
+                <td>{{estu.apellidos}}</td>
+
+                <td>{{estu.carrera}}</td>
+
+                <td>{{estu.edad}}</td>
+
+                <td>{{estu.telefono}}</td>
+
+                <td><a href="{% url 'estudiantes:edit-student' estu.id %}"><button class="btn">EDITAR</button></a>
+
+                    <a href="{% url 'estudiantes:delete-student' estu.id %}"><button class="btn">ELIMINAR</button></a>
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+    <br>
+    <a href="{% url 'estudiantes:create-student' %}"><button class="btn">CREAR UN NUEVO ESTUDIANTE</button></a>
+    {% endblock %}
